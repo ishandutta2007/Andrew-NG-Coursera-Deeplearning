@@ -95,7 +95,7 @@ Below is the official description from the course [page](https://www.coursera.or
 
 - It's much more efficient to define a single numerical evaluation metric upfront before launching your project.
 - Understanding the distinction between precision and recall (using a cat classifier as an illustration):
-  - Imagine running the classifier on 10 https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ containing 5 cats and 5 non-cats. The model flags 4 images as cats but misclassifies 1 non-cat.
+  - Imagine running the classifier on 10 https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ containing 5 cats and 5 non-cats. The model flags 4 images as cats but misclassifies 1 non-cat.
   - The confusion matrix looks like:
 
       |                | Predicted cat  | Predicted non-cat |
@@ -153,7 +153,7 @@ Below is the official description from the course [page](https://www.coursera.or
 
   | Metric      | Classification error                                         |
   | ----------- | ------------------------------------------------------------ |
-  | Algorithm A | 3% error (But a lot of porn https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ are treated as cat https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ here) |
+  | Algorithm A | 3% error (But a lot of porn https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ are treated as cat https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ here) |
   | Algorithm B | 5% error                                                     |
   - Judging purely by the metric, "A" wins — but from a user's perspective, "B" is clearly preferable.
   - This signals that our metric needs to be redesigned.
@@ -177,7 +177,7 @@ Below is the official description from the course [page](https://www.coursera.or
   1. Deep learning has advanced to the point where ML systems can realistically compete with humans across many domains.
   2. The design and development workflow becomes significantly more productive when targeting a task that humans can also perform.
 - Once an algorithm approaches human-level capability, subsequent gains in accuracy tend to plateau.
-    ![01- Why human-level performance](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images//01-_Why_human-level_performance.png)
+    ![01- Why human-level performance](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images//01-_Why_human-level_performance.png)
 - No system can beat the theoretical floor known as "Bayes optimal error."
 - The gap between human-level error and Bayes optimal error is typically very narrow.
 - Since humans excel at many tasks, as long as your ML system trails human performance, you can:
@@ -267,7 +267,7 @@ Below is the official description from the course [page](https://www.coursera.or
   | 4            |        | ✓          |         |                   |                |
   | ....         |        |            |         |                   |                |
   | **% totals** | **8%** | **43%**    | **61%** |      **12%**      |                |
-- From this table, you'd prioritize tackling blurry https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ or great cats to get the biggest performance lift.
+- From this table, you'd prioritize tackling blurry https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/3-%20Structuring%20Machine%20Learning%20Projects/Images/ or great cats to get the biggest performance lift.
 - This rapid counting exercise, typically completable in just a few hours, dramatically improves your ability to prioritize and gauge the promise of different directions.
 
 ### 🏷️ Fixing Mislabeled Examples

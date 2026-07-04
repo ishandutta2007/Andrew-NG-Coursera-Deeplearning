@@ -218,7 +218,7 @@ Each course module has been distilled into a comprehensive written guide. Start 
 | Resource | Description |
 |:---------|:-----------|
 | 📄 [Comprehensive DL Reference (PDF)](resources/comprehensive-dl-reference.pdf) | All five courses condensed into a single reference document |
-| 📓 [Andrew Ng's ML Notebooks](https://github.com/ashishpatel26/Andrew-NG-Notes/tree/master/Machine%20Learning%20notebooks%20By%20Andrew%20NG) | Original machine learning notebook collection |
+| 📓 [Andrew Ng's ML Notebooks](https://github.com/ishandutta2007/Andrew-NG-Coursera-Deeplearning/tree/master/Machine%20Learning%20notebooks%20By%20Andrew%20NG) | Original machine learning notebook collection |
 
 ---
 

@@ -103,7 +103,7 @@ Below is the official description from the [course page](https://www.coursera.or
   - **Overfitting** indicates **high variance**
   - The sweet spot comes from properly balancing bias and variance
   - Visual reference:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//01-_Bias_-_Variance.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//01-_Bias_-_Variance.png)
 - A numeric way to diagnose bias/variance without plotting:
   - 🔴 High variance (overfitting) scenario:
     - Training error: 1%
@@ -239,7 +239,7 @@ _**Practical debugging tip**_: when implementing gradient descent, plot the cost
   - Plot both training and dev set costs at each iteration. At some point, the dev cost stops improving and starts climbing.
   - Select the checkpoint where training cost is low AND dev cost is minimal.
   - Use those weights as your final model parameters.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//02-_Early_stopping.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//02-_Early_stopping.png)
   - Andrew generally favors L2 regularization over early stopping, since the latter simultaneously tries to minimize cost AND prevent overfitting — violating the orthogonalization principle (covered later).
   - However, early stopping has the advantage of not requiring an extra hyperparameter (unlike `lambda` in L2 regularization).
 - **🤝 Model Ensembles:**
@@ -319,7 +319,7 @@ _**Practical debugging tip**_: when implementing gradient descent, plot the cost
 
 - Gradient checking is a verification method that confirms your backpropagation implementation is correct.
 - You can compute derivatives numerically using this approach:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//03-_Numerical_approximation_of_gradients.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//03-_Numerical_approximation_of_gradients.png)
 - This approximation is extremely useful for catching backpropagation bugs, but it's computationally expensive (use it strictly for debugging, not during regular training).
 - The implementation is straightforward.
 - Gradient checking procedure:
@@ -420,7 +420,7 @@ Impacts of L2 regularization on:
 ### 📊 Deeper Look at Mini-Batch Behavior
 
 - Unlike full-batch gradient descent where cost drops smoothly each iteration, mini-batch training produces a noisy cost curve — some ups and downs — but the overall trajectory should trend downward.
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//04-_batch_vs_mini_batch_cost.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//04-_batch_vs_mini_batch_cost.png)
 - How mini-batch size affects behavior:
   - `mini batch size = m` ==> Full batch gradient descent
   - `mini batch size = 1` ==> Stochastic gradient descent (SGD)
@@ -474,13 +474,13 @@ Impacts of L2 regularization on:
     - `beta = 0.5` averages roughly the last 2 values
 - The optimal beta for most scenarios falls between 0.9 and 0.98.
 - A real-world visualization:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//Nasdaq1_small.png)   
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//Nasdaq1_small.png)   
     _(sourced from [investopedia.com](https://www.investopedia.com/))_
 
 ### 🔍 Intuition Behind Weighted Averages
 
 - Building intuition:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//05-_exponentially_weighted_averages_intuitions.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//05-_exponentially_weighted_averages_intuitions.png)
 - A sliding window approach would give more precise results, but the exponentially weighted average algorithm is significantly more memory-efficient and faster in practice.
 - The algorithm itself is elegantly simple:
   ```
@@ -539,7 +539,7 @@ Impacts of L2 regularization on:
   	b = B - learning_rate * db / sqrt(sdb)
   ```
 - RMSprop dampens movement in high-variance directions while accelerating it in low-variance directions:
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//06-_RMSprop.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//06-_RMSprop.png)
 - To prevent division by zero, add a tiny constant `epsilon` (e.g., `epsilon = 10^-8`):   
    `W = W - learning_rate * dW / (sqrt(sdW) + epsilon)`
 - RMSprop often permits using larger learning rates.
@@ -680,7 +680,7 @@ Impacts of L2 regularization on:
 ### 🔗 Integrating Batch Norm into Your Network
 
 - Batch norm applied in a 3-hidden-layer network:
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//bn.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//bn.png)
 - The full parameter set becomes:
   - `W[1]`, `b[1]`, ..., `W[L]`, `b[L]`, `beta[1]`, `gamma[1]`, ..., `beta[L]`, `gamma[L]`
   - `beta[1]`, `gamma[1]`, ..., `beta[L]`, `gamma[L]` are optimized using any standard algorithm (GD, RMSprop, Adam)
@@ -771,7 +771,7 @@ Impacts of L2 regularization on:
   Y_hat * (1 - Y_hat)
   ```
 - Illustrated example:
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//07-_softmax.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/2-%20Improving%20Deep%20Neural%20Networks/Images//07-_softmax.png)
 
 ### 🛠️ Choosing a Deep Learning Framework
 

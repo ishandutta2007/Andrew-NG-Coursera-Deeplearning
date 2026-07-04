@@ -143,7 +143,7 @@ Here is the official course description from the [course page](https://www.cours
         - What happens if you encounter a word not in your dictionary?
         - Add a special `<UNK>` (unknown) token to the vocabulary and use its index for the one-hot vector.
     - Complete illustration:   
-        ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//01.png)
+        ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//01.png)
 
 - The objective is to learn a mapping from this representation of x to the target output y via supervised learning with a sequence model.
 
@@ -156,7 +156,7 @@ Here is the official course description from the [course page](https://www.cours
     - Feature sharing (similar to what CNNs do) can dramatically reduce the parameter count. That's exactly what RNNs achieve.
 - Recurrent neural networks sidestep both of these problems.
 - Let's construct an RNN to tackle the **name entity recognition** task:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//02.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//02.png)
   - In this particular problem T<sub>x</sub> = T<sub>y</sub>. For cases where they differ, the RNN architecture is adjusted accordingly.
   - a<sup><0></sup> is typically initialized to zeros, though random initialization is occasionally used.
   - Three weight matrices are involved: W<sub>ax</sub>, W<sub>aa</sub>, and W<sub>ya</sub> with dimensions:
@@ -165,17 +165,17 @@ Here is the official course description from the [course page](https://www.cours
     - W<sub>ya</sub>: (n<sub>y</sub>, NoOfHiddenNeurons)
 - The weight matrix W<sub>aa</sub> acts as the memory mechanism through which the RNN preserves information from earlier layers.
 - Many papers and textbooks depict the same architecture in this compressed form:  
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//03.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//03.png)
   - This compact form can be harder to parse. It's generally more intuitive to unroll the diagram.
 - In the architecture described, the current prediction y&#770;<sup>\<t></sup> depends on all preceding inputs and activations.
 - Consider the sentence 'He Said, "Teddy Roosevelt was a great president"'. Here, "Teddy" is a person's name, but we deduce that from the word **president** that appears after it, not from **He** and **said** which precede it.
 - A key limitation of this architecture is that it cannot leverage information from later positions in the sequence. We'll address this with **Bidirectional RNNs** (BRNN) later.
 - Forward propagation equations for this architecture:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//04.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//04.png)
   - The activation function for `a` is typically tanh or ReLU; for `y` it depends on the task — sigmoid and softmax are common choices. For name entity recognition, sigmoid is used since there are only two classes.
 - To facilitate more complex RNN designs, these equations can be expressed more compactly.
 - **Condensed RNN notation**:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//05.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//05.png)
   - w<sub>a</sub> is the horizontal concatenation of w<sub>aa</sub> and w<sub>ax</sub>.
   - [a<sup>\<t-1></sup>, x<sup>\<t></sup>] is the vertical stack of a<sup>\<t-1></sup> and x<sup>\<t></sup>.
   - w<sub>a</sub> shape: (NoOfHiddenNeurons, NoOfHiddenNeurons + n<sub>x</sub>)
@@ -186,31 +186,31 @@ Here is the official course description from the [course page](https://www.cours
 - Let's examine how backpropagation operates within an RNN.
 - Most deep learning frameworks handle backpropagation automatically, but understanding the mechanics in RNNs is valuable.
 - Here is the computation graph:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//06.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//06.png)
   - Note that w<sub>a</sub>, b<sub>a</sub>, w<sub>y</sub>, and b<sub>y</sub> are shared across all time steps in the sequence.
 - The cross-entropy loss function is used:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//07.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//07.png)
   - The first equation gives the loss for a single example; the total sequence loss is the sum of all individual losses.
 - Computation graph with losses visualized:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//08.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//08.png)
 - This process is termed **backpropagation through time** because the activation `a` is propagated from one time step to the previous one — effectively moving backward through time.
 
 ### 🔀 RNN Architectural Variants
 
 - So far we have only looked at one RNN configuration where T<sub>x</sub> equals T<sub>Y</sub>. Since this isn't always the case, alternative architectures are needed.
 - The taxonomy in this section draws inspiration from Andrej Karpathy's [blog post](http://karpathy.github.io/2015/05/21/rnn-effectiveness/). This image summarizes all the types:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//09.jpg)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//09.jpg)
 - The architecture we covered earlier is classified as **Many to Many**.
 - For sentiment analysis — where X is text and Y is a rating from 1 to 5 — the appropriate architecture is **Many to One**, as illustrated by Karpathy.   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//10.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//10.png)
 - A **One to Many** design is suitable for tasks like music generation.  
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//11.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//11.png)
   - Note that from the second time step onward, the generated output is fed back as input to the network.
 - There's another important variant within **Many To Many**. In tasks like machine translation, input and output sequences usually differ in length. An encoder-decoder _Many To Many_ architecture addresses this:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//12.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//12.png)
   - This architecture splits into an encoder and a decoder. The encoder compresses the input into a single representation, which the decoder then transforms into the output. Each part has its own set of weights.
 - Summary of all RNN configurations:   
-   ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//12_different_types_of_rnn.jpg)
+   ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//12_different_types_of_rnn.jpg)
 - There is also the **attention** architecture, which we'll explore in a later chapter.
 
 ### 📖 Language Modeling and Sequence Generation
@@ -229,9 +229,9 @@ Here is the official course description from the [course page](https://www.cours
   - Include an end-of-sentence token `<EOS>` in the vocabulary and append it to each sentence. Use `<UNK>` for out-of-vocabulary words.
 - Take the sentence "Cats average 15 hours of sleep a day. `<EOS>`"
   - During training, the process looks like this:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//13.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//13.png)
   - The loss is computed using cross-entropy:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//14.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//14.png)
     - `i` iterates over all items in the corpus; `t` iterates over all time steps.
 - Using the trained model:
   1.  To predict the **next word**, feed the sentence through the RNN and examine the final y<sup>^\<t></sup> output vector — the highest-probability word wins.
@@ -244,7 +244,7 @@ Here is the official course description from the [course page](https://www.cours
 - Once a sequence model has been trained as a language model, you can verify what it's learned by sampling novel sequences from it.
 - Here's how to sample a new sequence from a trained model:
   1. Start with this model:   
-     ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//15.png)
+     ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//15.png)
   2. Initialize with a<sup><0></sup> = zero vector, and x<sup><1></sup> = zero vector.
   3. Randomly select a word from the probability distribution given by y&#770;<sup><1></sup>. It might be "The", for instance.
      - In numpy: `numpy.random.choice(...)`
@@ -278,7 +278,7 @@ Here is the official course description from the [course page](https://www.cours
 - The model needs to learn that "was" pairs with "cat" and "were" pairs with "cats". Basic RNNs struggle to capture such long-range dependencies.
 
 - As we discussed with deep neural networks, very deep architectures suffer from vanishing gradients. The same applies to RNNs with long sequences.   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//16.png)   
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//16.png)   
   - To compute the output for "was", gradients must flow all the way back through the network. Repeatedly multiplying small fractions causes gradients to vanish; multiplying large numbers causes them to explode.
   - Consequently, some weights receive inadequate updates.
 
@@ -292,7 +292,7 @@ Here is the official course description from the [course page](https://www.cours
 
 - Exploding gradients are easy to detect — your weights turn into `NaN`. A common fix is **gradient clipping**: if the gradient magnitude exceeds a threshold, rescale the gradient vector. Gradients are capped at a specified maximum value.
 
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//26.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//26.png)
 
 - **Additional notes**:
   - Remedies for exploding gradients:
@@ -313,7 +313,7 @@ Here is the official course description from the [course page](https://www.cours
 - The GRU is an RNN variant designed to mitigate the vanishing gradient problem and retain long-range information.
 
 - A basic RNN cell can be visualized as:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//17.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//17.png)
 
 - We'll use a similar diagrammatic style for the GRU.
 
@@ -322,7 +322,7 @@ Here is the official course description from the [course page](https://www.cours
 - In GRUs, C<sup>\<t></sup> = a<sup>\<t></sup>
 
 - GRU equations:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//18.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//18.png)
   - The update gate outputs a value between 0 and 1.
     - For intuition, think of the gate as being nearly 0 or 1 most of the time.
   - The memory cell is updated based on the gate value and the previous cell state.
@@ -345,7 +345,7 @@ Here is the official course description from the [course page](https://www.cours
       | was     | 1 (I don't need it anymore)| newer_val       |
       | full    | ..                         | ..              |
 - GRU schematic:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//19.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//19.png)
   
   - Visual diagrams in the style of http://colah.github.io/posts/2015-08-Understanding-LSTMs/ are widely used for understanding GRUs and LSTMs, though Andrew Ng prefers focusing on the equations.
 - Since the update gate U is typically a very small value (e.g., 0.00001), GRUs effectively avoid the vanishing gradient problem.
@@ -359,7 +359,7 @@ Here is the official course description from the [course page](https://www.cours
 - All multiplications in the equations are element-wise.
 - What we've described above is the simplified GRU. The full version adds a **relevance gate** used when computing the candidate C. This gate controls how much C<sup>\<t-1></sup> influences C<sup>\<t></sup>.
   - Full GRU equations:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//20.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//20.png)
   - Tensor shapes remain the same.
 - Why these particular architectures? Researchers have tested countless variations over the years, all aimed at solving the vanishing gradient problem. The full GRU has emerged as one of the most reliable and broadly applicable RNN designs. You're free to experiment, but GRUs and LSTMs are the established standards.
 
@@ -368,10 +368,10 @@ Here is the official course description from the [course page](https://www.cours
 - The LSTM is another RNN architecture capable of capturing long-term dependencies. It's more powerful and general-purpose than the GRU.
 - In LSTMs, C<sup>\<t></sup> != a<sup>\<t></sup>
 - LSTM unit equations:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//21.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//21.png)
 - Comparing GRU and LSTM gates: GRUs have an update gate `U`, a relevance gate `r`, and a candidate cell variable C<sup>\~\<t></sup>. LSTMs have an update gate `U` (also called the input gate I), a forget gate `F`, an output gate `O`, and a candidate cell variable C<sup>\~\<t></sup>.
 - Schematic (inspired by http://colah.github.io/posts/2015-08-Understanding-LSTMs/):    
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//22.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//22.png)
 - Notable LSTM variants include:
   - LSTM with **peephole connections**.
     - The standard LSTM modified so that C<sup>\<t-1></sup> feeds into every gate.
@@ -381,11 +381,11 @@ Here is the official course description from the [course page](https://www.cours
 
 - Several techniques exist for building more capable sequence models. Two key ones are bidirectional RNNs and deep (stacked) RNNs.
 - Recall the name entity recognition example:  
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//23.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//23.png)
 - The name **Teddy** can't be inferred from **He** and **said** alone — the clue comes from the later word **bears**.
 - Bidirectional RNNs (BiRNNs) solve this problem.
 - BiRNN architecture:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//24.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//24.png)
 - Important: the BiRNN forms an **acyclic graph**.
 - One direction of forward propagation runs left-to-right; the other runs right-to-left. The network learns from both directions simultaneously.
 - Predictions use y&#770;<sup>\<t></sup>, which combines activations arriving from both the left and right passes.
@@ -397,7 +397,7 @@ Here is the official course description from the [course page](https://www.cours
 
 - A single-layer RNN is often sufficient. However, for certain complex tasks, stacking multiple RNN layers into a deeper architecture is beneficial.
 - A three-layer deep RNN looks like this:  
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//25.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//25.png)
 - Whereas feed-forward networks can have 100 or 200+ layers, even 3 stacked RNN layers is considered deep and computationally expensive.
 - Sometimes, additional feed-forward layers are appended after the recurrent cells.
 
@@ -420,14 +420,14 @@ Here is the official course description from the [course page](https://www.cours
 - Word embeddings provide a way to represent words numerically, enabling algorithms to automatically discover analogies (e.g., "king" is to "queen" as "man" is to "woman").
 - Previously, we represented words using a vocabulary and one-hot vectors.
   - Visual example:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//27.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//27.png)
   - We use the notation **O** <sub>idx</sub> for a one-hot encoded word as shown above.
   - A fundamental weakness of one-hot encoding is that it treats every word as an isolated entity, preventing the algorithm from generalizing across semantically related words.
     - Example: "I want a glass of **orange** ______" — a model should predict **juice**.
     - A similar input: "I want a glass of **apple** ______" — the model may struggle to predict **juice** if it wasn't explicitly trained on this phrase. The two contexts aren't connected even though orange and apple are semantically similar.
   - The inner product of any two one-hot vectors is zero, and all pairwise distances are identical.
 - Wouldn't it be preferable to learn a feature-rich representation for words like man, woman, king, queen, apple, and orange?   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//28.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//28.png)
   - Each word is described by, say, 300 floating-point features.
   - Each word's column becomes a 300-dimensional vector serving as its representation.
   - We use the notation **e**<sub>5391</sub> to refer to the feature vector for the word **man**.
@@ -437,7 +437,7 @@ Here is the official course description from the [course page](https://www.cours
   - Orange and apple now share many similar features, making it far easier for the algorithm to transfer knowledge between them.
   - This representation is called **Word embeddings**.
 - To visualize word embeddings, we apply the t-SNE algorithm to project the high-dimensional features down to 2D:    
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//29.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//29.png)
   - Semantically related words cluster together in the visualization.
 - The term **word embeddings** comes from the idea of embedding each word as a unique vector within an n-dimensional space.
 
@@ -445,7 +445,7 @@ Here is the official course description from the [course page](https://www.cours
 
 - Let's see how the learned feature representations can be applied to the Named Entity Recognition task.
 - Consider this example:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//30.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//30.png)
 - **Sally Johnson** is identified as a person's name.
 - Having trained on this sentence, the model should be able to recognize that "**Robert Lin** is an *apple* farmer" also contains a person's name, since apple and orange have similar embeddings.
 - Even for the sentence "**Mahmoud Badry** is a *durian* cultivator", the model should correctly identify the name — even if the word *durian* never appeared in the training data. This demonstrates the power of word embeddings.
@@ -460,7 +460,7 @@ Here is the official course description from the [course page](https://www.cours
 - Another advantage: embeddings dramatically reduce input dimensionality!
   - Compare a 10,000-dimensional one-hot vector versus a compact 300-dimensional embedding.
 - There's a fascinating parallel between word embeddings and face recognition:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//31.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//31.png)
   - In face recognition, each face is encoded as a vector, and similarity is measured between vectors.
   - The terms **encoding** and **embeddings** are used interchangeably in this context.
 - In word embedding tasks, we learn a fixed representation for every word in our vocabulary (unlike image encoding, where each new image must be mapped to an n-dimensional vector). The learning algorithms are explored in subsequent sections.
@@ -470,24 +470,24 @@ Here is the official course description from the [course page](https://www.cours
 - One of the most remarkable properties of word embeddings is their ability to support analogy reasoning. While analogy tasks aren't the most practical NLP application, they illustrate the power of embeddings.
 - Analogy example:
   - Given this embedding table:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//32.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//32.png)
   - Can we solve this analogy?
     - Man ==> Woman
     - King ==> ??
   - Subtracting e<sub>Man</sub> from e<sub>Woman</sub> yields the vector `[-2  0  0  0]`
   - Likewise, e<sub>King</sub> - e<sub>Queen</sub> = `[-2  0  0  0]`
   - The difference in both cases encodes gender.   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//33.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//33.png)
     - This vector captures the gender dimension.
     - Note: this is a 2D t-SNE projection of a 4D vector — it's for visualization only. Don't use t-SNE to identify analogies.
   - Reformulating the problem:
     - e<sub>Man</sub> - e<sub>Woman</sub> ≈ e<sub>King</sub> - e<sub>??</sub>
   - Expressed mathematically:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//34.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//34.png)
   - The best match turns out to be e<sub>Queen</sub> — the vector that most closely satisfies the relation.
 - Cosine similarity — the standard similarity metric:
   - Formula:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//35.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//35.png)
     - $$\text{CosineSimilarity(u, v)} = \frac {u . v} {||u||_2 ||v||_2} = cos(\theta)$$
     - The numerator is the dot product of `u` and `v`. It grows larger when the vectors are more aligned.
 - Euclidean distance can also serve as a similarity function (though it measures dissimilarity, so negate it).
@@ -499,7 +499,7 @@ Here is the official course description from the [course page](https://www.cours
 - Example walkthrough:
   - Suppose our vocabulary contains 10,000 words (plus the <UNK> token).
   - The algorithm produces a matrix `E` with shape (300, 10000) — assuming 300 features per word.   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//36.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//36.png)
   - If O<sub>6257</sub> is the one-hot encoding for **orange** with shape (10000, 1), then   
     _np.dot(`E`,O<sub>6257</sub>) = e<sub>6257</sub>_ with shape (300, 1).
   - Generally, _np.dot(`E`, O<sub>j</sub>) = e<sub>j</sub>_
@@ -515,10 +515,10 @@ Here is the official course description from the [course page](https://www.cours
 - We'll begin with the more involved methods to build intuition.
 - **<u>Neural language model</u>**:
   - Starting example:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//37.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//37.png)
   - The goal is to build a model that predicts the next word.
   - The neural network used for this:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//38.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//38.png)
     - We obtain e<sub>j</sub> via `np.dot(`E`,o<sub>j</sub>)`
     - The hidden layer has parameters `W1` and `b1`; the softmax layer has `W2` and `b2`.
     - Input dimension is (300*6, 1) when using a context window of 6 preceding words.
@@ -566,11 +566,11 @@ Here is the official course description from the [course page](https://www.cours
   - The cross-entropy loss function is used.
   - This is known as the skip-gram model.
 - The softmax bottleneck in this model:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//39.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//39.png)
   - The denominator sums over all 10,000 vocabulary words.
   - With a vocabulary of 1 million or more, this computation becomes prohibitively slow.
 - One remedy is the "**Hierarchical softmax classifier**", which structures the classification as a tree:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//40.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//40.png)
 - In practice, the hierarchical softmax tree is not balanced. Frequent words sit near the root while rare words are placed at deeper levels.
 - How to sample the context word **c**?
   - One option: pick uniformly at random from the corpus.
@@ -604,14 +604,14 @@ Here is the official course description from the [course page](https://www.cours
 - Model definition for this supervised learning problem:
   - Let `c` be the context word, `t` the candidate word, and `y` the binary label.
   - A simple logistic regression model is applied.   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//41.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//41.png)
   - The logistic regression model can be visualized as:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//42.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//42.png)
   - Effectively, we have 10,000 binary classification sub-problems, but we only train k+1 of them per iteration.
 - Strategies for selecting negative samples:
   - Sampling proportional to word frequency in the corpus seems natural, but it over-represents stop words like _the, of, and..._
   - The authors recommend this formula:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//43.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//43.png)
 
 #### 🌍 GloVe Vectors
 
@@ -623,7 +623,7 @@ Here is the official course description from the [course page](https://www.cours
 - Then compute for every pair: X<sub>ct</sub> = # times `t` appears in the context of `c`
 - X<sub>ct</sub> = X<sub>tc</sub> when using a symmetric window (which GloVe does). They would differ with an asymmetric context window.
 - The model is formulated as:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//44.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//44.png)
 - f(x) — the weighting function — serves multiple purposes:
   - Avoids the `log(0)` problem when a context-target pair has zero co-occurrences.
   - Prevents stop words like "is", "the", and "this" from being over-weighted.
@@ -641,17 +641,17 @@ Here is the official course description from the [course page](https://www.cours
 #### 😊 Classifying Sentiment
 
 - Sentiment classification determines whether text expresses a positive or negative opinion. It's a widely used NLP capability with applications across many domains. Example:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//45.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//45.png)
 - A common challenge is the limited availability of large labeled datasets. Word embeddings can help compensate for this scarcity.
 - Typical dataset sizes range from 10,000 to 100,000 labeled examples.
 - A straightforward sentiment classification architecture:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//46.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//46.png)
   - The embedding matrix may have been trained on 100 billion words.
   - Each word embedding has 300 features.
   - We can **sum** or **average** all word embeddings then feed the result to a softmax classifier. This approach handles sentences of any length.
 - A flaw of this simple model: it disregards word order. For instance, "Completely lacking in **good** taste, **good** service, and **good** ambience" contains "good" three times yet conveys a negative sentiment.
 - An improved model uses an RNN:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//47.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//47.png)
   - Training this architecture yields a quite effective sentiment classifier.
   - It generalizes well even to words absent from the labeled training set. For example, if the sentence reads "Completely **<u>absent</u>** of good taste, good service, and good ambience" and "absent" never appeared in your labeled data — but it was present in the billion-word corpus used to train the embeddings — the model can still handle it correctly.
 
@@ -667,7 +667,7 @@ Here is the official course description from the [course page](https://www.cours
 - Steps to mitigate bias in word embeddings:
   - Based on the paper: https://arxiv.org/abs/1607.06520
   - Starting from these learned embeddings:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//48.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//48.png)
   - We focus on **gender bias** here, but the approach generalizes to other bias types.
   - The procedure:
     1. Identify the bias direction:
@@ -677,11 +677,11 @@ Here is the official course description from the [course page](https://www.cours
          - ....
        - Average k such difference vectors.
        - This reveals the bias axis:   
-         ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//49.png)
+         ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//49.png)
        - The result is a 1D bias direction and a 299D non-bias subspace.
     2. Neutralize: For words that aren't inherently gendered, project them onto the non-bias axis.
        - Words like babysitter and doctor should be gender-neutral, so we project them along the bias direction:   
-         ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//50.png)
+         ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//50.png)
          - After neutralization, these words become equidistant from gendered words.
          - The authors trained a classifier to determine which words require neutralization.
     3. Equalize pairs:
@@ -690,7 +690,7 @@ Here is the official course description from the [course page](https://www.cours
          - He – She
          - Boy – Girl
        - This is necessary because, before correction, the distance from "grandfather" to "babysitter" may differ from "grandmother" to "babysitter":   
-         ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//51.png)
+         ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//51.png)
        - The fix is to move both members of each pair to be equidistant from the non-bias axis center.
        - The number of word pairs requiring this step is relatively small.
 
@@ -706,18 +706,18 @@ Here is the official course description from the [course page](https://www.cours
 - This section covers sequence-to-sequence (_Many to Many_) architectures, which are essential for tasks like machine translation and speech recognition.
 - Starting with the basic setup:
   - A machine translation problem where X is a French sentence and Y is the English translation.   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//52.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//52.png)
   - The architecture has two components: an **encoder** and a **decoder**.
   - The encoder (an RNN — typically LSTM or GRU) processes the input sequence and produces a vector representation of the entire input.
   - The decoder (also an RNN) takes that representation and generates the output sequence.   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//53.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//53.png)
   - Key references:
     - [Sutskever et al., 2014. Sequence to sequence learning with neural networks](https://arxiv.org/abs/1409.3215)
     - [Cho et al., 2014. Learning phrase representations using RNN encoder-decoder for statistical machine translation](https://arxiv.org/abs/1406.1078)
 - A similar architecture applies to image captioning:
   - Here X is an image and Y is the caption text.
   - Model diagram:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//54.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//54.png)
   - A pre-trained CNN (such as AlexNet) serves as the image encoder; the decoder is an RNN.
   - Related papers:
     - [Maoet et. al., 2014. Deep captioning with multimodal recurrent neural networks](https://arxiv.org/abs/1412.6632)
@@ -727,7 +727,7 @@ Here is the official course description from the [course page](https://www.cours
 #### 🎯 Selecting the Optimal Output Sentence
 
 - The language model we learned earlier closely resembles the decoder portion of the translation model, with the key difference being a<sup>\<0></sup>   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//55.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//55.png)
 - The problem formulations differ:
   - Language model: P(y<sup>\<1></sup>, ..., y<sup>\<Ty></sup>)
   - Machine translation: P(y<sup>\<1></sup>, ..., y<sup>\<Ty></sup> | x<sup>\<1></sup>, ..., x<sup>\<Tx></sup>)
@@ -739,7 +739,7 @@ Here is the official course description from the [course page](https://www.cours
       - Jane is going to be visiting Africa in September.
       - In September, Jane will visit Africa.
 - The goal is to find the best possible output:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//56.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//56.png)
 - The most widely used algorithm for this is beam search (detailed next).
 - Why not use greedy search (always picking the highest-probability word at each step)?
   - It doesn't work well in practice.
@@ -763,16 +763,16 @@ Here is the official course description from the [course page](https://www.cours
 - The basic beam search can be refined in several ways.
 - **Length normalization**:
   - The beam search objective is to maximize:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//56.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//56.png)
   - Which involves multiplying:   
     P(y<sup>\<1></sup> | x) * P(y<sup>\<2></sup> | x, y<sup>\<1></sup>) * ... * P(y<sup>\<t></sup> | x, y<sup>\<y(t-1)></sup>)
   - Each probability is a fraction — usually a small one.
   - Multiplying many small fractions causes **numerical underflow** — values too small for floating-point precision.
   - The fix: use **log probabilities** (sum of logs instead of product of probabilities).   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//57.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//57.png)
   - However, both formulations favor shorter sequences (fewer terms = larger product/sum).
   - To counter this, normalize by sequence length:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//58.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//58.png)
     - Alpha is a tunable hyperparameter.
     - Alpha = 0 means no normalization.
     - Alpha = 1 means full normalization.
@@ -800,7 +800,7 @@ Here is the official course description from the [course page](https://www.cours
       - Verdict: The RNN model is at fault.
 - Error analysis procedure:
   - Select N error examples and build this table:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//59.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//59.png)
   - `B` marks beam search errors, `R` marks RNN errors.
   - Tally the counts to decide where to focus improvement efforts.
 
@@ -840,13 +840,13 @@ Here is the official course description from the [course page](https://www.cours
 
     Modified precision = sum(Count clip) / sum(Count) = 4/6
 - Generalized modified precision for n-grams:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//60.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//60.png)
 - Formalizing the complete BLEU score:
   - **P<sub>n</sub>** = BLEU score for a single n-gram type
   - **Combined BLEU score** = BP * exp(1/n * sum(P<sub>n</sub>))
     - For BLEU-4, compute P<sub>1</sub>, P<sub>2</sub>, P<sub>3</sub>, P<sub>4</sub>, average them, and exponentiate.
   - **BP** = **Brevity Penalty** — penalizes overly short outputs, which would otherwise score artificially high.   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//62.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//62.png)
 - Open-source BLEU score implementations are readily available.
 - BLEU is used across systems including machine translation and image captioning.
 
@@ -856,12 +856,12 @@ Here is the official course description from the [course page](https://www.cours
 - Attention has become one of the most impactful innovations in deep learning.
 - The problem with long sequences:
   - Consider this model with its inputs and outputs:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//63.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//63.png)
   - The encoder must compress the entire input into a single vector, and the decoder must unpack it into the full translation.
   - A human translator wouldn't memorize an entire sentence before translating — they'd work on portions at a time.
   - Model performance degrades as sentence length increases.
   - The attention model mimics human behavior by focusing on relevant portions, substantially boosting accuracy on longer sequences:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//64.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//64.png)
     -  Blue line: standard model; green line: model with attention.
 - This section provides a high-level intuition; full details follow in the next section.
 - Originally developed for machine translation, attention has since been applied to computer vision, Neural Turing Machines, and numerous other architectures.
@@ -869,38 +869,38 @@ Here is the official course description from the [course page](https://www.cours
   - [Bahdanau et. al., 2014. Neural machine translation by jointly learning to align and translate](https://arxiv.org/abs/1409.0473)
 - Intuitive walkthrough:
   - Assume the encoder is a bidirectional RNN:
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//65.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//65.png)
   - The French sentence is fed to the encoder, which produces a representation of the input.
   - A separate decoder RNN generates the English output, starting with "Jane".
   - Attention weights determine which input words are most relevant for generating each output word. To produce "jane", the model attends to "jane", "visite", "l'Afrique":   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//66.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//66.png)
   - alpha<sup>\<1,1></sup>, alpha<sup>\<1,2></sup>, and alpha<sup>\<1,3></sup> are the attention weights used.
   - For every output word, a unique set of attention weights governs which input words receive focus:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//67.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//67.png)
 
 #### 🔬 The Attention Mechanism in Detail
 
 - Let's formalize the attention intuition into a concrete implementation.
 - First, a bidirectional RNN (typically LSTM-based) encodes the French input:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//68.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//68.png)
 - For simplicity, assume a<sup>\<t'></sup> includes both forward and backward activations at time step t'.
 - A unidirectional decoder RNN generates the output, using a context vector `c` computed from the attention weights. These weights indicate how much each a<sup>\<t'></sup> should contribute to the current output:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//69.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//69.png)
 - Attention weights for each sequence element must sum to 1:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//70.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//70.png)
 - The context vector `c` is computed as:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//71.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//71.png)
 - How attention weights are calculated:
   - alpha<sup>\<t, t'></sup> = the degree of attention y<sup>\<t></sup> should devote to a<sup>\<t'></sup>
     - For instance, generating the first output word uses alpha<sup>\<1,1></sup>, alpha<sup>\<1,2></sup>, alpha<sup>\<1,3></sup>
   - The raw attention scores are passed through a softmax so they sum to 1:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//72.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//72.png)
   - Computing e<sup>\<t, t'></sup> requires a small neural network (often just one hidden layer, since this computation occurs at every time step):   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//73.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//73.png)
     - s<sup>\<t-1></sup> is the decoder RNN's hidden state, and a<sup>\<t'></sup> is the encoder's bidirectional activation.
 - A drawback of this algorithm: its time complexity is quadratic (O(T<sub>x</sub> × T<sub>y</sub>)).
 - A useful way to interpret attention is by visualizing the attention weight matrix:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//74.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//74.png)
 
 ### 🎙️ Audio and Speech Processing
 
@@ -911,24 +911,24 @@ Here is the official course description from the [course page](https://www.cours
   - X: audio clip
   - Y: transcript
   - Visualizing an audio clip:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//75.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//75.png)
     - Horizontal axis represents time; vertical axis shows air pressure variation.
   - What really is an audio recording? A microphone records little variations in air pressure over time, and it is these little variations in air pressure that your ear perceives as sound. You can think of an audio recording is a long list of numbers measuring the little air pressure changes detected by the microphone. We will use audio sampled at 44100 Hz (or 44100 Hertz). This means the microphone gives us 44100 numbers per second. Thus, a 10 second audio clip is represented by 441000 numbers (= 10 * 44100).
   - Working with raw audio waveforms is quite challenging.
   - Even the human ear doesn't process raw waveforms directly — it decomposes sound into different frequencies.
   - A standard preprocessing step is to generate a spectrogram, which mimics this frequency decomposition:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//76.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//76.png)
     - Horizontal axis is time; vertical axis shows frequency. Color intensity reflects energy (loudness) at each frequency — analogous to what the human ear does.
   - A spectrogram is created by sliding a window over the raw signal and computing the dominant frequencies in each window via Fourier transformation.
   - Historically, speech recognition relied on _phonemes_ — hand-engineered basic sound units. Linguists believed that decomposing audio into phonemes was the optimal path to speech recognition.
   - End-to-end deep learning eliminated the need for phonemes, enabled by the availability of large audio datasets.
   - Research datasets typically contain 300–3,000 hours of audio; the best commercial systems now train on 100,000+ hours.
 - Building an accurate speech recognition system using the attention model:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//77.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//77.png)
 - The _CTC cost_ (**Connectionist Temporal Classification**) is another effective approach:
   - Example: Y = "the quick brown fox"
   - The RNN processes input and output sequences of equal length:   
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//78.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//78.png)
   - Note: shown as a unidirectional RNN here, but bidirectional RNNs are used in practice.
   - In speech recognition, input X is typically much longer than output Y.
     - 10 seconds at 100Hz yields X with shape (1000, ). These 10 seconds don't contain 1000 characters.
@@ -947,7 +947,7 @@ Here is the official course description from the [course page](https://www.cours
 - Deep learning has enabled devices that respond to spoken wake words. These are trigger word detection systems.
 - Example: Amazon's Alexa responds when you say "Alexa, what time is it?" and provides an answer.
 - Popular trigger word systems:  
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//79.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//79.png)
 - The research landscape for trigger word detection is still evolving — no single universally accepted algorithm exists yet. Here's one workable approach.
 - Building a trigger word detection model:
   - X: audio recording
@@ -955,12 +955,12 @@ Here is the official course description from the [course page](https://www.cours
     - X<sup>\<1></sup>, X<sup>\<2></sup>, ... , X<sup>\<t></sup>
   - Y: binary labels — 0 for non-trigger audio, 1 for the trigger word.
   - Example architecture:  
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//80.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//80.png)
     - Vertical lines in the audio mark moments immediately following the trigger word. The corresponding labels are 1.
   - A drawback: this produces a heavily imbalanced dataset with far more zeros than ones.
   - A practical workaround: output 1 for several consecutive time steps after the trigger word, rather than just a single time step, before reverting to 0.  
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//81.png)  
-    ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//85.png)
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//81.png)  
+    ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//85.png)
 
 
 ## 📎 Supplementary Material
@@ -969,9 +969,9 @@ Here is the official course description from the [course page](https://www.cours
 
 - The model is implemented using Keras layers.
 - The attention model architecture:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//83.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//83.png)
   - There are two separate LSTMs in this model. Because the one at the bottom of the picture is a Bi-directional LSTM and comes *before* the attention mechanism, we will call it *pre-attention* Bi-LSTM. The LSTM at the top of the diagram comes *after* the attention mechanism, so we will call it the *post-attention* LSTM. The pre-attention Bi-LSTM goes through $T_x$ time steps; the post-attention LSTM goes through $T_y$ time steps. 
   - The post-attention LSTM passes $s^{\langle t \rangle}, c^{\langle t \rangle}$ from one time step to the next. In the lecture videos, we were using only a basic RNN for the post-activation sequence model, so the state captured by the RNN output activations $s^{\langle t\rangle}$. But since we are using an LSTM here, the LSTM has both the output activation $s^{\langle t\rangle}$ and the hidden cell state $c^{\langle t\rangle}$. However, unlike previous text generation examples (such as Dinosaurus in week 1), in this model the post-activation LSTM at time $t$ does will not take the specific generated $y^{\langle t-1 \rangle}$ as input; it only takes $s^{\langle t\rangle}$ and $c^{\langle t\rangle}$ as input. We have designed the model this way, because (unlike language generation where adjacent characters are highly correlated) there isn't as strong a dependency between the previous character and the next character in a YYYY-MM-DD date. 
 - What one "Attention" step does to calculate the attention variables $\alpha^{\langle t, t' \rangle}$, which are used to compute the context variable $context^{\langle t \rangle}$ for each timestep in the output ($t=1, \ldots, T_y$).   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//84.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/5-%20Sequence%20Models/Images//84.png)
   - The diagram uses a `RepeatVector` node to copy $s^{\langle t-1 \rangle}$'s value $T_x$ times, and then `Concatenation` to concatenate $s^{\langle t-1 \rangle}$ and $a^{\langle t \rangle}$ to compute $e^{\langle t, t'}$, which is then passed through a softmax to compute $\alpha^{\langle t, t' \rangle}$. 

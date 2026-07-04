@@ -69,7 +69,7 @@ Course four of the deep learning specialization offered on [Coursera](https://ww
 
 Below is the official course description from the course [page](https://www.coursera.org/learn/convolutional-neural-networks):
 
-> This course will teach you how to build convolutional neural networks and apply it to image data. Thanks to deep learning, computer vision is working far better than just two years ago, and this is enabling numerous exciting applications ranging from safe autonomous driving, to accurate face recognition, to automatic reading of radiology https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/. 
+> This course will teach you how to build convolutional neural networks and apply it to image data. Thanks to deep learning, computer vision is working far better than just two years ago, and this is enabling numerous exciting applications ranging from safe autonomous driving, to accurate face recognition, to automatic reading of radiology https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/. 
 >
 > You will:
 > - Understand how to build a convolutional neural network, including recent variations such as residual networks.
@@ -101,7 +101,7 @@ Below is the official course description from the course [page](https://www.cour
     - Identifying objects and pinpointing their positions.
   - Neural style transfer.
     - Applying the artistic style of one image onto another.
-- A major challenge in computer vision is that https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ can be extremely large, and we need algorithms that are both quick and precise.
+- A major challenge in computer vision is that https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ can be extremely large, and we need algorithms that are both quick and precise.
   - For instance, a `1000x1000` image yields 3 million input features for a fully connected network. If the next hidden layer has 1000 neurons, the weight matrix would be `[1000, 3 million]` — that's 3 billion parameters in just the first layer, which is computationally prohibitive!
 - The answer is to construct networks using **convolutional layers** rather than **fully connected layers**.
 
@@ -112,7 +112,7 @@ Below is the official course description from the course [page](https://www.cour
 - Within an image, we can identify vertical edges, horizontal edges, or edges at any orientation.
 - Vertical edge detection:
   - An illustration of the convolution operation for finding vertical edges:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//01.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//01.png)
   - In this case, a `6x6` matrix convolved with a `3x3` filter/kernel produces a `4x4` output.
   - In TensorFlow, the relevant function is `tf.nn.conv2d`. In Keras, you'd use `Conv2d`.
   - The vertical edge filter identifies `3x3` regions where a bright area transitions to a dark area.
@@ -189,7 +189,7 @@ Below is the official course description from the course [page](https://www.cour
 
 ### 🧊 Working with Volumetric Convolutions
 
-- We've covered how convolution operates on 2D https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/; now let's explore convolution on 3D https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ (such as RGB images).
+- We've covered how convolution operates on 2D https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/; now let's explore convolution on 3D https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ (such as RGB images).
 - We convolve an image with dimensions (height, width, # channels) using a filter with matching (height, width, same # channels). The channel count of the filter must equal the channel count of the input.
 - Think of this as having stacked filters, one for each channel!
 - Example:
@@ -271,7 +271,7 @@ Below is the official course description from the course [page](https://www.cour
 
 - Beyond convolution layers, CNNs frequently employ pooling layers to shrink spatial dimensions, accelerate computation, and make detected features more robust.
 - Max pooling illustration:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//02.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//02.png)
   - This example uses `f = 2`, `s = 2`, and `p = 0` as hyperparameters.
 - The intuition behind max pooling: if a feature is detected anywhere within a given region, retain its strongest activation. The practical reason for using pooling is that it consistently works well and reduces computation.
 - Max pooling has zero learnable parameters.
@@ -319,7 +319,7 @@ Below is the official course description from the course [page](https://www.cour
     - Number of neurons is 10 (e.g., for classifying the 10 digits).
 - Convention: Conv1 + Pool1 together count as a single layer.
 - Statistics for this architecture:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//03.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//03.png)
 - There are many hyperparameters to set. Refer to guidelines discussed later or draw inspiration from published literature.
 - A general trend: spatial dimensions shrink as you go deeper, while filter count increases.
 - Typically a CNN stacks one or more convolution operations followed by a pooling step.
@@ -334,7 +334,7 @@ Below is the official course description from the course [page](https://www.cour
   - Sparsity of connections.
     - Each output value in a layer depends on only a small subset of inputs, which promotes translation invariance.
 - The complete picture:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//04.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//04.png)
 
 ## 🏛️ Landmark CNN Architectures
 
@@ -360,7 +360,7 @@ Below is the official course description from the course [page](https://www.cour
 - **LeNet-5**
 
   - Designed to recognize handwritten digits from `32x32x1` grayscale images. Here's a diagram:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//05.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//05.png)
   - Published in 1998. The original didn't use softmax in the output layer.
   - Contains approximately 60k parameters.
   - Image dimensions decrease while channel counts grow across layers.
@@ -372,9 +372,9 @@ Below is the official course description from the course [page](https://www.cour
 
   - Named after Alex Krizhevsky, the lead author. Geoffrey Hinton was among the co-authors.
 
-  - Built to tackle the ImageNet challenge — classifying https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ into 1000 categories. Architecture diagram:
+  - Built to tackle the ImageNet challenge — classifying https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ into 1000 categories. Architecture diagram:
 
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//06.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//06.png)
 
   - Overview:
 
@@ -404,7 +404,7 @@ Below is the official course description from the course [page](https://www.cour
     - CONV = 3 X 3 filter, s = 1, same  
     - MAX-POOL = 2 X 2 , s = 2
   - Architecture diagram:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//07.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//07.png)
   - A large network even by today's standards with roughly 138 million parameters.
     - The bulk of these reside in fully connected layers.
   - Requires around 96MB of memory per image during forward propagation alone!
@@ -421,15 +421,15 @@ Below is the official course description from the course [page](https://www.cour
 - This section introduces skip connections, which allow activations from one layer to bypass intermediate layers and feed directly into a much deeper layer — enabling the training of networks with 100+ layers.
 - **Residual block**
   - ResNets are composed of these residual blocks.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//08.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//08.png)
   - A shortcut/skip connection is inserted before the second activation function.
   - The inventors demonstrated that stacking these blocks enables training of significantly deeper networks.
   - [[He et al., 2015. Deep residual networks for image recognition]](https://arxiv.org/abs/1512.03385)
 - **Residual Network**
   - A neural network built by stacking multiple residual blocks.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//09.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//09.png)
   - These networks can grow deeper without performance degradation. In standard (plain) networks, theory predicts better solutions with more depth, but vanishing/exploding gradients undermine actual performance. Residual connections solve this and allow networks of arbitrary depth.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//10.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//10.png)
   - Left: plain network; Right: ResNet. Clearly, the ResNet maintains or improves performance as depth increases.
   - In certain problems, additional depth may not yield further improvement — it depends on the specific task.
   - Some researchers have experimented with 1000-layer networks, though these aren't common in production.
@@ -472,10 +472,10 @@ Below is the official course description from the course [page](https://www.cour
 
 - Skip connections facilitate gradient flow during backpropagation, which is the fundamental reason deeper networks can be trained.
 
-- Let's examine ResNet applied to https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+- Let's examine ResNet applied to https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
 
   - The **ResNet-34** architecture:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//resNet.jpg)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//resNet.jpg)
   - All 3x3 Convs use "same" padding.
   - Design philosophy: keep things simple.
   - Rule of thumb: when spatial dimensions halve, double the filter count.
@@ -485,18 +485,18 @@ Below is the official course description from the course [page](https://www.cour
 
 - Helpful concept (**Spectrum of Depth**):
 
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//12.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//12.png)
   - Source: [icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf](icml.cc/2016/tutorials/icml2016_tutorial_deep_residual_networks_kaiminghe.pdf)
 
 - Residual block variants:
 
   - Identity block:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//16.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//16.png)
     - Note: each conv is followed by batch normalization (`BN`) then `RELU`. Dimensions remain unchanged.
     - This skip bridges 2 layers. Skip connections can span n layers where n>2.
     - This diagram follows [Keras](https://keras.io/) layer conventions.
   - The convolutional block:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//17.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//17.png)
     - The conv can be a bottleneck 1 x 1 conv
 
 ### 🔬 1×1 Convolutions & Network-in-Network
@@ -536,7 +536,7 @@ Below is the official course description from the course [page](https://www.cour
 - When designing a CNN, you face many choices at each layer: 3 x 3 conv, 5 x 5 conv, max pooling, etc.
 - The **Inception** philosophy asks: why not try all of them simultaneously?
 - **Inception module**, naive version:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//13.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//13.png)
   - Note: the max-pool uses "same" padding here.
   - Input dimensions: 28 x 28 x 192; Output dimensions: 28 x 28 x 256.
   - By applying every possible operation, we let the network decide which transformations are most valuable.
@@ -565,16 +565,16 @@ Below is the official course description from the course [page](https://www.cour
 - This 1 x 1 Conv layer is referred to as a Bottleneck (`BN`).
 - Empirically, the bottleneck layer does not harm accuracy.
 - **Inception module**, dimensionality reduction version:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//14.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//14.png)
 - Inception module implementation example in Keras:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//inception_block1a.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//inception_block1a.png)
 
 ### 🌐 The Inception Network (GoogLeNet)
 
 - The Inception network chains together multiple Inception modules.
 - The name "Inception" was inspired by a *meme* from the **Inception movie**.
 - Complete architecture:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//15.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//15.png)
 - A Max-Pool block is sometimes placed before an inception module to reduce input dimensionality.
 - Three softmax branches appear at different network depths to guide intermediate representations toward the learning objective. The auxiliary outputs (softmax0, softmax1) also serve as regularizers.
 - Since the original Inception, multiple subsequent versions have been developed — v2, v3, and v4. Hybrid architectures combining Inception modules with ResNet connections also exist.
@@ -597,11 +597,11 @@ Below is the official course description from the course [page](https://www.cour
 - These pretrained models were likely trained on massive datasets such as ImageNet, MS COCO, or Pascal — requiring enormous time and compute resources. Reusing their weights saves considerable effort.
 - Scenario 1 — limited data:
   - Suppose you're classifying cats into 3 categories: Tigger, Misty, and neither.
-  - You have insufficient data to train a network from scratch on these https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+  - You have insufficient data to train a network from scratch on these https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
   - Andrew recommends downloading a well-performing network with its weights, removing the final softmax layer, adding your own output layer, and training only that new layer while keeping all preceding layers frozen.
   - Frameworks provide options to freeze parameters in specific layers using `trainable = 0` or `freeze = 0`.
-  - A helpful speedup trick: run the pretrained network (minus the final softmax) to generate intermediate representations for your https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and save them to disk. Then train a lightweight network on top of these cached features. This bypasses the cost of forward-passing through all layers repeatedly.
-    - Essentially you're converting your https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ into fixed-length vectors.
+  - A helpful speedup trick: run the pretrained network (minus the final softmax) to generate intermediate representations for your https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and save them to disk. Then train a lightweight network on top of these cached features. This bypasses the cost of forward-passing through all layers repeatedly.
+    - Essentially you're converting your https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ into fixed-length vectors.
 - Scenario 2 — moderate data:
   - If you have a reasonably large dataset, freeze only the early layers of the pretrained network and train the remaining layers.
   - Alternatively, discard the unfrozen layers entirely and replace them with your own custom architecture.
@@ -623,7 +623,7 @@ Below is the official course description from the course [page](https://www.cour
   - Color shifting.
     - For example, apply small perturbations to the R, G, and B channels. The resulting image still looks the same to humans but appears different to the model.
     - Perturbation values are typically drawn from a probability distribution and kept small.
-    - This improves robustness to lighting and color variations in https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/. 
+    - This improves robustness to lighting and color variations in https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/. 
     - The ***PCA color augmentation*** algorithm can automatically determine appropriate color shifts.
 - Implementation tip for training:
   - Use a separate CPU thread to produce augmented mini-batches while the GPU trains the network.
@@ -667,20 +667,20 @@ Below is the official course description from the course [page](https://www.cour
 
   - **Image Classification**: 
     - Assign a single class label to the entire image. No spatial information about object location is needed. Typically involves one object per image.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//Classification.jpg)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//Classification.jpg)
   - **Classification with Localization**:
     - Predict both the class label and the bounding box coordinates. Locate the single object with a rectangle. Usually one object per image.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//ClassificationLoc.jpg)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//ClassificationLoc.jpg)
   - **Object Detection**:
     - Identify all objects from specific classes within an image, providing bounding boxes for each. Multiple objects of different classes may be present.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//ObjectDetection.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//ObjectDetection.png)
   - **Semantic Segmentation**:
     - Assign a category label to every pixel. Only pixel-level classification matters — individual object instances aren't distinguished.
     - If two objects of the same class overlap, they can't be separated.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//SemanticSegmentation.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//SemanticSegmentation.png)
   - **Instance Segmentation**:
     - The most comprehensive task. Like semantic segmentation but also differentiating between individual instances of the same class.
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//InstanceSegmentation.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//InstanceSegmentation.png)
 
 - For basic image classification, attach a Softmax to the end of a ConvNet.
 
@@ -769,8 +769,8 @@ Below is the official course description from the course [page](https://www.cour
 
 - We'll apply a Conv net to object detection through the sliding window detection approach.
 - Example scenario: detecting cars in images.
-- Step one: train a ConvNet on tightly cropped car https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and non-car https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//18.png)
+- Step one: train a ConvNet on tightly cropped car https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and non-car https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//18.png)
 - Once the ConvNet is trained, apply the sliding window method:
   1. Choose a window (rectangle) size.
   2. Partition the image into overlapping windows of that size. Slide with some stride.
@@ -786,22 +786,22 @@ Below is the official course description from the course [page](https://www.cour
 ### ⚡ Conv-Based Sliding Windows
 
 - Converting FC layers to convolutional equivalents (for a 4-class prediction):
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//19.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//19.png)
   - The FC layer becomes a Conv layer where the filter dimensions equal the input dimensions.
 - **Convolutional implementation of sliding windows**:
   - First, assume your trained ConvNet is fully convolutional (no FC layers):
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//20.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//20.png)
   - For a 16 x 16 x 3 test image, the naïve approach would run the ConvNet four separate times (once per 16 x 16 window).
   - The convolutional implementation processes it all at once:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//21.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//21.png)
   - Each cell in the output corresponds to one sliding window position from the naïve method. The "blue" cell represents the first window, and so on.
   - This is vastly more efficient because computation is shared across all window positions.
   - A larger example:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//22.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//22.png)
   - Here 16 sliding windows share computation through a single forward pass.
   - [[Sermanet et al., 2014, OverFeat: Integrated recognition, localization and detection using convolutional networks]](https://arxiv.org/abs/1312.6229)
 - A limitation of this method: predicted bounding box positions may not align precisely with objects.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//23.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//23.png)
   - Red: the desired bounding box; Blue: what the algorithm actually captures.
 
 ### 📦 Predicting Bounding Boxes
@@ -812,7 +812,7 @@ Below is the official course description from the course [page](https://www.cour
 
 - YOLO Algorithm overview:
 
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//24.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//24.png)
 
   1. Consider a 100 × 100 image.
   2. Overlay a 3 x 3 grid (use 19 x 19 for finer results on a 100 x 100 image).
@@ -833,7 +833,7 @@ Below is the official course description from the course [page](https://www.cour
 - Intersection Over Union is a metric for evaluating object detection quality.
 - It calculates the area of overlap between two bounding boxes divided by their combined area. In essence, *IoU measures how much two bounding boxes overlap*.
 - Illustration:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//25.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//25.png)
   - Red: ground truth; Purple: prediction.
   - Compute the union area (both rectangles combined), then the intersection area.
   - `IOU = intersection area / Union area`
@@ -845,7 +845,7 @@ Below is the official course description from the course [page](https://www.cour
 - A known issue with YOLO: it can produce multiple detections for a single object.
 - Non-max suppression ensures each object receives only one detection.
 - Illustration:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//26.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//26.png)
   - Each car may trigger two or more detection boxes with varying confidence scores, because multiple grid cells may believe they contain the object's center.
 - Non-max suppression procedure:
   1. Assume we're detecting a single class.
@@ -859,23 +859,23 @@ Below is the official course description from the course [page](https://www.cour
 ### ⚓ Using Anchor Boxes
 
 - In standard YOLO, each grid cell detects at most one object. But what if a cell contains multiple objects?
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//27.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//27.png)
   - Here a car and a person share the same cell.
   - In practice, this situation is rare.
 - Anchor boxes address this limitation.
 - With a single anchor: Y = `[Pc, bx, by, bh, bw, c1, c2, c3]`. With two anchors:
   - Y = `[Pc, bx, by, bh, bw, c1, c2, c3, Pc, bx, by, bh, bw, c1, c2, c3]` — simply duplicating the structure.
   - Each anchor box has a predefined shape:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//28.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//28.png)
 - Previously: each training object was assigned to the grid cell containing its midpoint.
 - With anchor boxes: each object is assigned to both the grid cell containing its midpoint AND the anchor box with the <u>highest IoU</u>. Object assignment is based on which anchor box shape most closely matches the object's bounding box.
 - Data example:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//29.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//29.png)
   - The car better matches anchor 2 than anchor 1.
 - You can define two or more anchor boxes; their shapes must be predetermined.
   - Traditionally, anchor shapes are selected manually — perhaps 5 or 10 shapes that cover the range of objects you expect to detect.
   - K-means clustering on your dataset can also determine good anchor shapes automatically.
-- Anchor boxes enable the algorithm to specialize — for instance, making it easier to detect wider https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ versus taller ones.
+- Anchor boxes enable the algorithm to specialize — for instance, making it easier to detect wider https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ versus taller ones.
 
 ### 🎯 The Complete YOLO Pipeline
 
@@ -900,20 +900,20 @@ Below is the official course description from the course [page](https://www.cour
 - Your dataset consists of images with multiple labels and bounding rectangles. Transform these into the agreed Y format.
 
   - An example:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//30.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//30.png)
   - Initialize everything to zeros and ?, then for each label and rectangle: find the closest grid cell, determine the shape, and select the best anchor via IoU. The resulting Y shape per image is `[HeightOfGrid, WidthOfGrid, 16]`.
 
-- Train the labeled https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ on a Conv net. Expected output shape: `[HeightOfGrid, WidthOfGrid, 16]`.
+- Train the labeled https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ on a Conv net. Expected output shape: `[HeightOfGrid, WidthOfGrid, 16]`.
 
 - At inference: run the ConvNet on a test image, then apply non-max suppression separately for each of the 3 classes.
 
   - Initial detections might look like:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//31.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//31.png)
     - Total generated boxes = grid_width × grid_height × number_of_anchors = 3 × 3 × 2
   - After filtering out low-confidence predictions:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//32.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//32.png)
   - After selecting highest-confidence boxes and applying IoU-based filtering:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//33.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//33.png)
 
 - YOLO tends to struggle with very small objects.
 
@@ -1104,7 +1104,7 @@ Below is the official course description from the course [page](https://www.cour
 
 - The region selection method is a segmentation algorithm that produces results like:
 
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//34.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//34.png)
 
 - If the segmentation yields 2000 regions, the classifier/CNN evaluates each one individually.
 
@@ -1143,7 +1143,7 @@ Below is the official course description from the course [page](https://www.cour
 
 #### 🤷 Face Recognition Explained
 
-- A face recognition system identifies individuals from their facial features. It operates on both https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ or videos.
+- A face recognition system identifies individuals from their facial features. It operates on both https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ or videos.
 - **<u>Liveness detection</u>** in video-based face recognition prevents the system from being fooled by a static photograph. It can be trained via supervised deep learning using datasets of live and non-live subjects, potentially combined with sequence models.
 - Face verification vs. face recognition:
   - Verification:
@@ -1163,7 +1163,7 @@ Below is the official course description from the course [page](https://www.cour
 - One-Shot Learning: successfully recognizing a person after seeing just one training image.
 - Deep learning traditionally requires large datasets to perform well.
 - The workaround is to learn a **similarity function**:
-  - d( **img1**, **img2** ) = degree of difference between https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+  - d( **img1**, **img2** ) = degree of difference between https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
   - We want d to be small when the two faces belong to the same person.
   - We define a threshold tau T:
     - If d( **img1**, **img2** ) <= T    → same person.
@@ -1173,7 +1173,7 @@ Below is the official course description from the course [page](https://www.cour
 
 - We implement the similarity function through Siamese Networks — architectures where two or more networks share identical parameters and process multiple inputs simultaneously.
 - Siamese network structure:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//35.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//35.png)
   - Two identical ConvNets encode input images into embedding vectors. In the diagram, each vector has shape (128, ).
   - Loss function: `d(x1, x2) = || f(x1) - f(x2) ||^2`
   - Goal: d should be small for same-person pairs and large for different-person pairs.
@@ -1196,10 +1196,10 @@ Below is the official course description from the course [page](https://www.cour
   - Rearranging:
   - `||f(A) - f(P)||^2  - ||f(A) - f(N)||^2 + alpha <= 0`
 - Complete loss function:
-  - Given 3 https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ (A, P, N):
+  - Given 3 https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ (A, P, N):
   - `L(A, P, N) = max (||f(A) - f(P)||^2  - ||f(A) - f(N)||^2 + alpha , 0)`
-  - `J = Sum(L(A[i], P[i], N[i]) , i)` across all triplets of https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
-- Your dataset must contain multiple https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ per person. Generate triplets from this dataset, which must be sufficiently large.
+  - `J = Sum(L(A[i], P[i], N[i]) , i)` across all triplets of https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+- Your dataset must contain multiple https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ per person. Generate triplets from this dataset, which must be sufficiently large.
 - Selecting triplets A, P, N:
   - Random selection (where A and P share an identity and A and N don't) makes the constraint too easy to satisfy:
     - `d(A, P) + alpha <= d (A, N)` 
@@ -1209,21 +1209,21 @@ Below is the official course description from the course [page](https://www.cour
     - This can be achieved using similar poses, for example.
     - See the paper for more details.
 - Full details: [[Schroff et al.,2015, FaceNet: A unified embedding for face recognition and clustering]](https://arxiv.org/abs/1503.03832)
-- Production face recognition systems train on enormous datasets — 10 to 100+ million https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+- Production face recognition systems train on enormous datasets — 10 to 100+ million https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
 - Numerous pretrained face recognition models and weights are publicly available.
 
 #### ✅ Binary Classification for Face Verification
 
 - Beyond triplet loss, face similarity can also be learned as a binary classification problem.
 - Alternative similarity learning approach:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//36.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//36.png)
   - The output layer uses a sigmoid activation.
   - `Y' = wi * Sigmoid ( f(x(i)) - f(x(j)) ) + b` where the subtraction computes the Manhattan distance between f(x(i)) and f(x(j)).
   - Alternative distance metrics include Euclidean and chi-square similarity.
   - The architecture is Siamese — both branches share identical parameters.
 - Reference: [[Taigman et. al., 2014. DeepFace closing the gap to human level performance]](https://www.cv-foundation.org/openaccess/content_cvpr_2014/html/Taigman_DeepFace_Closing_the_2014_CVPR_paper.html)
 - Deployment optimization:
-  - Pre-compute embeddings f(x(j)) for all reference https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and store them.
+  - Pre-compute embeddings f(x(j)) for all reference https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ and store them.
   - For each new image, compute f(x(i)), compare against all stored embeddings, and pass pairs through the sigmoid.
 - This approach performs comparably to triplet loss.
 - Available face recognition implementations using deep learning:
@@ -1237,7 +1237,7 @@ Below is the official course description from the course [page](https://www.cour
 
 - Neural style transfer is a fascinating application of convolutional networks.
 - It takes a content image `C` and a style image `S`, producing a generated image `G` that combines the content of C with the artistic style of S.
-- ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//37.png)
+- ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//37.png)
 - Implementation requires examining features extracted at both shallow and deep layers of the ConvNet.
 - It builds upon a pretrained convolutional network (like VGG). Repurposing a network trained on a different task is called transfer learning.
 
@@ -1245,17 +1245,17 @@ Below is the official course description from the course [page](https://www.cour
 
 - Exploring what a deep network has learned:
   - Given an AlexNet-style ConvNet:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//38.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//38.png)
   - Select a neuron in layer l. Find the nine image patches that produce the highest activation for that neuron.
     - Note: neurons in early layers have small receptive fields, so their visualizations correspond to small image patches. Deeper layers have larger receptive fields and produce larger visual patterns.
   - Repeat across different neurons and layers.
   - Layer 1 typically captures low-level features like colors and edges.
 - Each successive layer learns increasingly complex and abstract representations.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//39.png)
-- Layer 1 visualizations are derived from the first layer's weights. Deeper layer https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ are generated by finding the receptive field regions that maximally activate each neuron.
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//39.png)
+- Layer 1 visualizations are derived from the first layer's weights. Deeper layer https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ are generated by finding the receptive field regions that maximally activate each neuron.
 - [[Zeiler and Fergus., 2013, Visualizing and understanding convolutional networks]](https://arxiv.org/abs/1311.2901)
 - A helpful resource on computing **receptive fields** for a given layer:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//receptiveField.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//receptiveField.png)
   - From [A guide to receptive field arithmetic for Convolutional Neural Networks](https://medium.com/@nikasa1889/a-guide-to-receptive-field-arithmetic-for-convolutional-neural-networks-e0f514068807)
 
 #### 💰 The Overall Cost Function
@@ -1273,9 +1273,9 @@ Below is the official course description from the course [page](https://www.cour
      - `G = G - dG`  Compute the gradient of the cost with respect to the image pixels and update iteratively.
 - The iterative process looks like:
   - Target output:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//40.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//40.png)
   - Progressive refinement:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//41.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//41.png)
 
 #### 📝 Content Similarity Cost
 
@@ -1284,7 +1284,7 @@ Below is the official course description from the course [page](https://www.cour
   - If `l` is very shallow (e.g., layer 1), the generated image will be forced to closely replicate the original content.
   - In practice, `l` is chosen at an intermediate depth — neither too shallow nor too deep.
 - Use a pre-trained ConvNet (e.g., VGG network).
-- Let `a(c)[l]` and `a(G)[l]` represent the activations at layer `l` for the https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
+- Let `a(c)[l]` and `a(G)[l]` represent the activations at layer `l` for the https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/.
 - When `a(c)[l]` and `a(G)[l]` are similar, the images share the same content:
   - `J(C, G) at a layer l = 1/2 || a(c)[l] - a(G)[l] ||^2`
 
@@ -1294,7 +1294,7 @@ Below is the official course description from the course [page](https://www.cour
   - Consider using layer l's activations to characterize ***style***.
   - Style is defined as the correlation between **activations** across different **channels**.
     - Conceptually:
-      - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//42.png)
+      - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//42.png)
     - How correlated is the orange channel with the yellow channel?
     - Correlated: when a certain pattern appears in one channel, a specific pattern tends to appear in the other (they co-occur).
     - Uncorrelated: a pattern in one channel tells us nothing about what appears in another.
@@ -1306,7 +1306,7 @@ Below is the official course description from the course [page](https://www.cour
     - Called the style matrix or Gram matrix.
     - Each entry quantifies the correlation between a pair of channels.
   - The Gram matrices are computed for both the style image and the generated image using:
-    - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//43.png)
+    - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//43.png)
     - Each entry equals the sum of element-wise products across spatial positions.
 - Efficient Gram matrix computation:
   - Reshape the activation tensor from H × W × C to HW × C.
@@ -1331,7 +1331,7 @@ Below is the official course description from the course [page](https://www.cour
 
 #### 📐 Extending Convolutions to 1D and 3D
 
-- So far, convolutions have been applied to https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ which are inherently 2D.
+- So far, convolutions have been applied to https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images/ which are inherently 2D.
 - Convolutions generalize naturally to 1D and 3D data.
 - 1D convolution example:
   - Input shape (14, 1)
@@ -1343,7 +1343,7 @@ Below is the official course description from the course [page](https://www.cour
 - 1D data appears in many domains: audio waveforms, sound signals, heartbeat monitors.
 - For most 1D sequential data, Recurrent Neural Networks (RNNs) are typically preferred.
 - 3D data arises in applications such as CT scans:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//44.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/4-%20Convolutional%20Neural%20Networks/Images//44.png)
 - 3D convolution example:
   - Input shape (14, 14, 14, 1)
   - Apply 16 filters with F = 5, S = 1

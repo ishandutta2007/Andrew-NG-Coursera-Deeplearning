@@ -80,12 +80,12 @@ Below is the official course description from the [course page](https://www.cour
 
 - At its simplest, a single neuron is just linear regression.
 - A basic neural network diagram:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/01.jpg)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/01.jpg)
   - Illustration sourced from [tutorialspoint.com](tutorialspoint.com)
 - RELU (rectified linear unit) is currently the go-to activation function, and it dramatically accelerates deep network training.
 - The hidden layers automatically discover relationships between inputs — that's the core strength of deep learning.
 - A deep neural network simply has additional hidden layers (greater depth).
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/02.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/02.png)
   - Illustration sourced from [opennn.net](opennn.net)
 - Every input connects to the hidden layer, and the network figures out which connections matter.
 - Supervised learning is when you have labeled pairs (X, Y) and your goal is to learn a mapping from X to Y.
@@ -98,7 +98,7 @@ Below is the official course description from the [course page](https://www.cour
   - **Standard fully-connected NNs** — well-suited for tabular/structured data
   - **Hybrid or custom architectures** — combinations of different network types
 - Structured data refers to organized information like databases and spreadsheets.
-- Unstructured data encompasses things like https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images/, video, audio, and text.
+- Unstructured data encompasses things like https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images/, video, audio, and text.
 - Structured data often drives more revenue since businesses depend on making predictions from their vast datasets.
 
 ### 🚀 What's Fueling the Deep Learning Boom?
@@ -106,7 +106,7 @@ Below is the official course description from the [course page](https://www.cour
 - Three major catalysts are propelling deep learning forward:
   1. 📊 **Abundant Data:**
      - Consider this visualization:
-       - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//11.png)
+       - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//11.png)
      - With limited data, neural networks perform comparably to linear regression or SVMs
      - With large datasets, even a small NN outperforms SVMs
      - With large datasets, bigger networks consistently beat smaller ones
@@ -131,7 +131,7 @@ Below is the official course description from the [course page](https://www.cour
 ### 📊 Two-Class Classification
 
 - The primary focus here is using logistic regression to build a binary classifier.
-  - ![log](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/03.png)
+  - ![log](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//Others/03.png)
   - Illustration sourced from [3.bp.blogspot.com](http://3.bp.blogspot.com)
 - A worked example involves determining whether a given image shows a cat.
 - Key notation to remember:
@@ -205,7 +205,7 @@ Below is the official course description from the [course page](https://www.cour
 ### 🔀 Visualizing Computation with Graphs
 
 - A computation graph arranges operations in a left-to-right flow.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//02.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//02.png)
 
 ### 🔙 Computing Derivatives on a Graph
 
@@ -213,14 +213,14 @@ Below is the official course description from the [course page](https://www.cour
   Given `x -> y -> z`          (x influences y, which influences z)
   Then `d(z)/d(x) = d(z)/d(y) * d(y)/d(x)`
 - A detailed walkthrough is demonstrated in the lecture.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//03.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//03.png)
 - Traversing the graph right-to-left makes computing derivatives far simpler.
 - `dvar` denotes the derivative of the final output with respect to intermediate variables.
 
 ### 📉 Gradient Descent Applied to Logistic Regression
 
 - The lecture walks through derivative calculations for a single sample with two features `x1` and `x2`.
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//04.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//04.png)
 
 ### 📊 Scaling Gradient Descent to m Samples
 
@@ -237,7 +237,7 @@ Below is the official course description from the [course page](https://www.cour
   ```
 
 - The overall setup looks like:
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//09.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//09.png)
 
 - Working right-to-left, we compute derivatives relative to the output:
 
@@ -389,7 +389,7 @@ Below is the official course description from the [course page](https://www.cour
 ### ⚙️ Calculating the Output of a Neural Network
 
 - Equations governing the hidden layer:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//05.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//05.png)
 - Key details from the diagram above:
   - `noOfHiddenNeurons = 4`
   - `Nx = 3`
@@ -548,7 +548,7 @@ Below is the official course description from the [course page](https://www.cour
   # Hint there are transposes with multiplication because to keep dimensions correct
   ```
 - Visual derivation of the 6 backpropagation equations:   
-  ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//06.png)
+  ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//06.png)
 
 ### 🎲 Why Random Weight Initialization Matters
 
@@ -628,15 +628,15 @@ Below is the official course description from the [course page](https://www.cour
       - Audio ==> Low-level acoustic features (sss, bb) ==> Phonemes ==> Words ==> Sentences
 - Neuroscientists believe deep networks mirror how the brain processes information (simple → complex).
 - The connection between circuit theory and depth:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//07.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//07.png)
 - When tackling a new problem, don't leap straight to dozens of layers. Start with simple models (e.g., logistic regression), then try a shallow network, and incrementally add depth.
 
 ### 🧱 Core Components of Deep Networks
 
 - Forward and backward propagation blocks for layer l:
-  - ![Untitled](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//10.png)
+  - ![Untitled](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//10.png)
 - The full deep network architecture:
-  - ![](https://raw.githubusercontent.com/ashishpatel26/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//08.png)
+  - ![](https://raw.githubusercontent.com/mbadry1/DeepLearning.ai-Summary/master/1-%20Neural%20Networks%20and%20Deep%20Learning/Images//08.png)
 
 ### ↔️ Forward & Backward Pass Mechanics
 
